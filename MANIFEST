@@ -1,0 +1,7 @@
+LICENSE
+MANIFEST
+META.yml
+Makefile.PL
+README
+lib/Catalyst/Engine/Mojo.pm
+lib/MojoX/Catalyst.pm

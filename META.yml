@@ -1,0 +1,11 @@
+--- 
+abstract: Mojo for Catalyst
+author: 
+  - Uwe Voelker <uwe.voelker@gmx.de>
+generated_by: Dist::Zilla::Plugin::MetaYaml version 1.003
+license: perl
+name: Catalyst-Engine-Mojo
+requires: 
+  Catalyst: 0
+  Mojo: 0
+version: 0.001_01
