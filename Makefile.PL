@@ -9,11 +9,11 @@ WriteMakefile(
   NAME      => 'Catalyst::Engine::Mojo',
   AUTHOR    => 'Uwe\ Voelker\ \<uwe\.voelker\@gmx\.de\>',
   ABSTRACT  => 'Mojo for Catalyst',
-  VERSION   => '0.001_01',
+  VERSION   => '0.001_02',
   EXE_FILES => [ qw() ],
   (eval { ExtUtils::MakeMaker->VERSION(6.21) } ? (LICENSE => 'perl') : ()),
   PREREQ_PM    => {
-    "Mojo" => '0',
+    "Mojo" => '0.9',
     "Catalyst" => '0',
   },
 );

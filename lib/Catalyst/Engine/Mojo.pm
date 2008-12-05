@@ -1,5 +1,5 @@
 package Catalyst::Engine::Mojo;
-our $VERSION = '0.001_01';
+our $VERSION = '0.001_02';
 
 
 use strict;
@@ -17,13 +17,6 @@ sub run {
     my ($self, $c, $tx) = @_;
 
     $self->mojo($tx);
-
-    ###HACK###
-    foreach (($tx->req->url, $tx->req->url->base)) {
-        $_->scheme('http');
-        $_->host('localhost');
-        $_->port(3000);
-    }
 
     $c->handle_request;
 }
@@ -83,14 +76,16 @@ sub prepare_path {
     my $req = $self->mojo->req;
 
     ###TODO### Catalyst::Engine::CGI says this is too slow
-    my $url = $req->url->to_string;
-    warn "URI: $url";
-    $c->req->uri(URI->new($url));
 
     my $base = $req->url->base->to_string;
+    # base must end with slash
     $base .= '/' unless $base =~ /\/$/;
-    warn "BASE: $base";
     $c->req->base(URI->new($base));
+
+    my $url = $req->url->to_string;
+    # avoid double slashes
+    $url =~ s|^/||;
+    $c->req->uri(URI->new($base.$url));
 }
 
 sub prepare_query_parameters {
@@ -106,6 +101,8 @@ sub write {
 
     ###HACK###
     $res->body($res->body.$buffer);
+
+    return length $buffer;
 }
 
 
@@ -121,7 +118,7 @@ Catalyst::Engine::Mojo - Mojo for Catalyst (ALPHA!)
 
 =head1 VERSION
 
-version 0.001_01
+version 0.001_02
 
 =head1 SYNOPSIS
 

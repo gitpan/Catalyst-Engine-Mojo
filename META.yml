@@ -7,5 +7,5 @@ license: perl
 name: Catalyst-Engine-Mojo
 requires: 
   Catalyst: 0
-  Mojo: 0
-version: 0.001_01
+  Mojo: 0.9
+version: 0.001_02
